@@ -20,11 +20,51 @@ export default function useAddressBook() {
     databaseService.setItem("addresses", addresses);
   }, [addresses]);
 
+  const fetchAddresses = async (postcode: string, houseNumber: string) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/getAddresses?postcode=${postcode}&streetnumber=${houseNumber}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch addresses");
+      }
+
+      const data = await response.json();
+
+      console.log("Response:", data);
+      if (!data || !Array.isArray(data.details)) {
+        throw new Error("Invalid data format");
+      }
+
+      // Assuming `transformAddress` converts raw data to the correct Address type
+      const transformedAddresses = data.details.map(
+        (address: RawAddressModel) => transformAddress(address)
+      );
+
+      // Return transformed addresses
+      return transformedAddresses;
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+      throw error; // This will be caught in the calling function
+    }
+  };
+
   return {
     /** Add address to the redux store */
     addAddress: (address: Address) => {
       dispatch(addAddress(address));
       updateDatabase();
+    },
+    searchAddress: (firstName: string) => {
+      const filteredAddresses = addresses.findIndex((address) =>
+        address.firstName.toLowerCase().includes(firstName.toLowerCase())
+      );
+      if (filteredAddresses === -1) {
+        return false;
+      } else {
+        return true;
+      }
     },
     /** Remove address by ID from the redux store */
     removeAddress: (id: string) => {
@@ -46,6 +86,7 @@ export default function useAddressBook() {
       );
       setLoading(false);
     },
+    fetchAddresses,
     loading,
   };
 }

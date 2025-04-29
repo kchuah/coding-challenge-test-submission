@@ -23,3 +23,32 @@
 /** TODO: Create separate styles for .primary and .secondary variants of this button:
 * - Must use the CSS variables declared in App.css
 */
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border: none;
+}
+
+.secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-secondary);
+  border: 2px solid var(--border-color-primary);
+}
+
+.spinner {
+  margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,52 +1,75 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-/* TODO: Add the 'Roboto' font from Google fonts and add it as a global CSS var called `--font-primary` */
-/* TODO: Make application responsive. It is already for the most part, but it is not optimal for smaller screens.
-* - Making the application responsive using the Mobile First principle.
-*/
-
+/* Root variables */
 :root {
-  --border-radius-default: 4px;
-  --border-radius-xl: 15px;
+  --font-primary: "Roboto", sans-serif;
+
+  --color-primary: #413ef7;
+  --color-secondary: white;
+  --color-text-primary: white;
+  --color-text-secondary: #413ef7;
+  --border-color-primary: #413ef7;
+
   --color-accent: #cacfdd;
   --color-background: #fff;
   --color-border: #bbb;
   --color-brand: #413ef7;
   --color-text: #141925;
   --color-text-light: #72787d;
+
+  --border-radius-default: 4px;
+  --border-radius-xl: 15px;
+
   --width-input: 20rem;
   --width-content: 30rem;
 }
 
+/* Reset & Box model */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* Body & HTML settings */
+html,
 body {
-  accent-color: var(--color-brand);
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font-size: 18px;
   font-family: var(--font-primary);
   background: var(--color-accent);
+  accent-color: var(--color-brand);
 }
 
+/* Main wrapper - Center content */
 main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
 }
 
+/* Text & Code */
 small {
   font-weight: normal;
   font-size: 0.65em;
   color: var(--color-text-light);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Form Styling */
+form {
+  width: 100%;
+  max-width: var(--width-content);
+  margin: 0 auto;
 }
 
 fieldset {
@@ -54,11 +77,21 @@ fieldset {
   border-bottom: 1px solid var(--color-accent);
   border-top: 1px solid var(--color-accent);
   margin: 2rem 0;
-  max-width: var(--width-input);
   padding: 1rem 0;
   width: 100%;
 }
 
 legend {
   color: var(--color-text-light);
+}
+
+/* Responsive - Mobile First */
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+
+  form {
+    max-width: 100%;
+  }
 }

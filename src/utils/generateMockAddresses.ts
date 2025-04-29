@@ -1,4 +1,4 @@
-const postCodeToCityMapping = {
+const postcodeToCityMapping = {
   1: 'Brisbane',
   2: 'Sydney',
   3: 'Melbourne',
@@ -25,7 +25,7 @@ const streetNumberToStreetMapping = {
 const generateMockAddresses = (postcode: string, streetNumber: string) => {
   const postcodeFirstChar = parseInt(postcode.substring(0, 1));
   const streetNumberFirstChar = parseInt(streetNumber.substring(0, 1));
-  const postcodeMapping: string = (postCodeToCityMapping as any)[postcodeFirstChar];
+  const postcodeMapping: string = (postcodeToCityMapping as any)[postcodeFirstChar];
   const streetMapping: string = (streetNumberToStreetMapping as any)[streetNumberFirstChar];
 
   if (postcodeMapping) {

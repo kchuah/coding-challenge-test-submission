@@ -14,7 +14,7 @@ export default async function handle(
     return res.status(400).send({
       status: "error",
       // DO NOT MODIFY MSG - used for grading
-      errormessage: "Postcode and street number fields mandatory!",
+      errormessage: "postcode and street number fields mandatory!",
     });
   }
 
@@ -22,7 +22,7 @@ export default async function handle(
     return res.status(400).send({
       status: "error",
       // DO NOT MODIFY MSG - used for grading
-      errormessage: "Postcode must be at least 4 digits!",
+      errormessage: "postcode must be at least 4 digits!",
     });
   }
 
@@ -33,11 +33,11 @@ export default async function handle(
     return true;
   };
 
-  /** TODO: Refactor the code below so there is no duplication of logic for postCode/streetNumber digit checks. */
+  /** TODO: Refactor the code below so there is no duplication of logic for postcode/streetNumber digit checks. */
   if (!isStrictlyNumeric(postcode as string)) {
     return res.status(400).send({
       status: "error",
-      errormessage: "Postcode must be all digits and non negative!",
+      errormessage: "postcode must be all digits and non negative!",
     });
   }
 

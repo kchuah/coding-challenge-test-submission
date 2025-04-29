@@ -1,6 +1,5 @@
-// DO NOT MODIFY
 
-export interface AddressModel {
+export interface Address {
   city: string;
   firstName: string;
   houseNumber: string;
@@ -10,14 +9,14 @@ export interface AddressModel {
   street: string;
 }
 
-export interface RawAddressModel extends AddressModel {
+export interface RawAddressModel extends Address {
   lat: string;
   lon: string;
 }
 
-export default function transformAddress(data: RawAddressModel): AddressModel {
-  const { firstName, lastName, city, houseNumber, lat, lon, postcode, street } =
-    data;
+
+export default function transformAddress (data: RawAddressModel): Address {
+  const { firstName, lastName, city, houseNumber, lat, lon, postcode, street } = data;
   return {
     city: city || "",
     firstName: firstName || "",
@@ -27,4 +26,4 @@ export default function transformAddress(data: RawAddressModel): AddressModel {
     postcode: postcode || "",
     street: street || "",
   };
-}
+};

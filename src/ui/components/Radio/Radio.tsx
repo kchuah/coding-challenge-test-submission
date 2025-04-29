@@ -7,6 +7,7 @@ interface RadioProps {
   name: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   children: React.ReactNode;
+  value?: string;
 }
 
 const Radio: FunctionComponent<RadioProps> = ({ children, id, name, onChange }) => {

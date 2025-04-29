@@ -5,7 +5,7 @@ import $ from "./InputText.module.css";
 interface InputTextProps {
   name: string;
   placeholder: string;
-  value: string;
+  value: any;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
