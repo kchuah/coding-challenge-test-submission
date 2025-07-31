@@ -22,3 +22,15 @@
 .item h3 {
   margin: 0 0 0.5em;
 }
+
+@media (max-width: 600px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .remove {
+    margin-left: 0;
+    width: 100%;
+  }
+}

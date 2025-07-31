@@ -14,3 +14,11 @@
   --color-text: #fff;
   --color-text-light: #878b9a;
 }
+
+@media (max-width: 600px) {
+  .section {
+    padding: 1rem 0.5rem;
+    margin: 1rem 0;
+    max-width: 100%;
+  }
+}

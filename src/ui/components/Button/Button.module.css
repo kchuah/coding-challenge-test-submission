@@ -20,6 +20,24 @@
   transform: scale(0.95);
 }
 
-/** TODO: Create separate styles for .primary and .secondary variants of this button:
-* - Must use the CSS variables declared in App.css
-*/
+/** .primary and .secondary button variants */
+.primary {
+  background: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  color: #fff;
+}
+
+.secondary {
+  background: #fff;
+  border: 1.5px solid var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* Responsive: make button full width on small screens */
+@media (max-width: 600px) {
+  .button {
+    max-width: 100%;
+    padding: 0.75em 0.5em;
+    font-size: 1em;
+  }
+}
