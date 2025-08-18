@@ -10,7 +10,7 @@
   
   /* Tablet styles */
 @media (min-width: 768px) {
-  section {
+  .section {
    padding: 2rem 3rem;
   }
 }
