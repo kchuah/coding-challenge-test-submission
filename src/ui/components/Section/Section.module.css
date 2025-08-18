@@ -5,8 +5,14 @@
   color: var(--color-text);
   margin: 3rem auto;
   max-width: var(--width-content);
-  padding: 2rem 3rem;
-  width: 100%;
+  padding: 1rem 1rem;
+}
+  
+  /* Tablet styles */
+@media (min-width: 768px) {
+  section {
+   padding: 2rem 3rem;
+  }
 }
 
 .dark {

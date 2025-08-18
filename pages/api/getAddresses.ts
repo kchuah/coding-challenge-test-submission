@@ -26,27 +26,29 @@ export default async function handle(
     });
   }
 
-  /** TODO: Implement the validation logic to ensure input value
-   *  is all digits and non negative
-   */
-  const isStrictlyNumeric = (value: string) => {
-    return true;
+  /** Implement validation logic to ensure input value is all digits and non negative */
+  const isStrictlyNumeric = (value: string): boolean => {
+    return /^\d+$/.test(value) && parseInt(value, 10) >= 0;
   };
 
-  /** TODO: Refactor the code below so there is no duplication of logic for postCode/streetNumber digit checks. */
-  if (!isStrictlyNumeric(postcode as string)) {
-    return res.status(400).send({
-      status: "error",
-      errormessage: "Postcode must be all digits and non negative!",
-    });
-  }
+  /** Validate numeric fields with custom error messages */
+  const validateNumericField = (value: string, fieldName: string) => {
+    if (!isStrictlyNumeric(value)) {
+      return res.status(400).send({
+        status: "error",
+        errormessage: `${fieldName} must be all digits and non negative!`,
+      });
+    }
+    return null;
+  };
 
-  if (!isStrictlyNumeric(streetnumber as string)) {
-    return res.status(400).send({
-      status: "error",
-      errormessage: "Street Number must be all digits and non negative!",
-    });
-  }
+  // Validate postcode
+  const postcodeValidation = validateNumericField(postcode as string, "Postcode");
+  if (postcodeValidation) return postcodeValidation;
+
+  // Validate street number
+  const streetNumberValidation = validateNumericField(streetnumber as string, "Street Number");
+  if (streetNumberValidation) return streetNumberValidation;
 
   const mockAddresses = generateMockAddresses(
     postcode as string,
@@ -60,8 +62,8 @@ export default async function handle(
     // delay the response by 500ms - for loading status check
     await timeout(500);
     return res.status(200).json({
-      status: "ok",
-      details: mockAddresses,
+      status: "success",
+      results: mockAddresses,
     });
   }
 

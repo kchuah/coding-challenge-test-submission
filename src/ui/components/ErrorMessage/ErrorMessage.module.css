@@ -1,0 +1,9 @@
+.errorMessage {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: var(--border-radius-default);
+  color: #c33;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-weight: 500;
+}
