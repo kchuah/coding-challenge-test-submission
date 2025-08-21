@@ -26,7 +26,7 @@ const AddressBook = () => {
           {addresses.length === 0 && <p>No addresses found, try add one 😉</p>}
           {addresses.map((address, index) => {
             return (
-              <Card key={address.id}>
+              <Card key={address.houseNumber}>
                 <div data-testid={`address-${index}`} className={$.item}>
                   <div>
                     <h3>
@@ -37,7 +37,7 @@ const AddressBook = () => {
                   <div className={$.remove}>
                     <Button
                       variant="secondary"
-                      onClick={() => removeAddress(address.id)}
+                      onClick={() => removeAddress(address.houseNumber)}
                     >
                       Remove
                     </Button>
