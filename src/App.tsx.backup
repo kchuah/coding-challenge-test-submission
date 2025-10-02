@@ -20,16 +20,6 @@ function App() {
   const { fields, onChange, clearFields } = useFormFields();
   const { postCode, houseNumber, firstName, lastName, selectedAddress } = fields;
   
-  // Direct handler for radio button selection
-  const handleRadioChange = (addressId: string) => {
-    if (addressId) {
-      const syntheticEvent = {
-        target: { name: 'selectedAddress', value: addressId }
-      } as React.ChangeEvent<HTMLInputElement>;
-      onChange(syntheticEvent);
-    }
-  };
-  
   /**
    * Results states
    */
@@ -64,12 +54,9 @@ function App() {
       const data = await response.json();
       
       if (data.status === 'ok') {
-        const transformedAddresses = data.details.map((address: any, index: number) => ({
+        const transformedAddresses = data.details.map((address: any) => ({
           ...address,
           houseNumber: houseNumber,
-          lat: address.lat.toString(),
-          lon: address.long.toString(), // API returns 'long' but we need 'lon'
-          id: `${address.lat}_${address.long}_${index}`, // Generate unique ID
         }));
         setAddresses(transformedAddresses);
       } else {
@@ -151,20 +138,20 @@ function App() {
           </fieldset>
         </form>
         {addresses.length > 0 &&
-          addresses.map((address, index) => {
+          addresses.map((address) => {
             return (
               <Radio
-                key={`address-${address.id}-${index}`}
                 name="selectedAddress"
                 id={address.id}
-                onChange={() => handleRadioChange(address.id)}
+                key={address.id}
+                onChange={onChange}
                 value={address.id}
                 checked={selectedAddress === address.id}
               >
                 <Address {...address} />
               </Radio>
             );
-          })}
+          }}
         {selectedAddress && (
           <form onSubmit={handlePersonSubmit}>
             <fieldset>

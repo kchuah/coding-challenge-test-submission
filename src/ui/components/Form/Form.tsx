@@ -7,9 +7,8 @@ import $ from './Form.module.css';
 interface FormEntry {
   name: string;
   placeholder: string;
-  // TODO: Defined a suitable type for extra props
-  // This type should cover all different of attribute types
-  extraProps: any;
+  // Proper type for extra props covering all different attribute types
+  extraProps: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 interface FormProps {
