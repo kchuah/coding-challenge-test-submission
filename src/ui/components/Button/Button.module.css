@@ -12,14 +12,49 @@
   width: 100%;
 }
 
-.button:hover {
+.button:hover:not(:disabled) {
   transform: scale(1.05);
 }
 
-.button:active {
+.button:active:not(:disabled) {
   transform: scale(0.95);
 }
 
-/** TODO: Create separate styles for .primary and .secondary variants of this button:
-* - Must use the CSS variables declared in App.css
-*/
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: var(--color-brand);
+  border: 2px solid var(--color-brand);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #3632d1;
+  border-color: #3632d1;
+}
+
+.secondary {
+  background-color: transparent;
+  border: 2px solid var(--color-brand);
+  color: var(--color-brand);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: rgba(65, 62, 247, 0.1);
+}
+
+.spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,9 @@
+.error {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: var(--border-radius-default);
+  color: #c33;
+  margin: 1rem 0;
+  padding: 1rem;
+  max-width: var(--width-input);
+}
