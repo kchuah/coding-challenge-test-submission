@@ -4,5 +4,35 @@
 }
 
 .formRow {
-  margin-bottom: 0.5em;
+  display: flex;
+  gap: 1rem;
+    margin-bottom: 0.5em;
+
+}
+
+@media (max-width: 600px) {
+  .formRow {
+    flex-direction: column; 
+    gap: 0.5rem;
+  }
+}
+
+button {
+  padding: 5px;
+}
+
+@media (max-width: 600px) {
+  button {
+    width: 100%;
+  }
+}
+
+main {
+  padding: 2rem;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
 }

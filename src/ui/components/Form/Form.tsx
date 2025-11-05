@@ -1,8 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { ReactNode, FunctionComponent } from 'react';
 
-import Button from '../Button/Button';
+import Button from "@/components/Button/Button";
 import InputText from '../InputText/InputText';
 import $ from './Form.module.css';
+
 
 interface FormEntry {
   name: string;
@@ -16,7 +17,8 @@ interface FormProps {
   label: string;
   loading: boolean;
   formEntries: FormEntry[];
-  onFormSubmit: () => void;
+  children ?: ReactNode;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   submitText: string;
 }
 
@@ -24,11 +26,12 @@ const Form: FunctionComponent<FormProps> = ({
   label,
   loading,
   formEntries,
-  onFormSubmit,
+  children,
+  onSubmit,
   submitText
 }) => {
   return (
-    <form onSubmit={onFormSubmit}>
+    <form onSubmit={onSubmit}>
       <fieldset>
         <legend>{label}</legend>
         {formEntries.map(({ name, placeholder, extraProps }, index) => (
@@ -51,3 +54,4 @@ const Form: FunctionComponent<FormProps> = ({
 };
 
 export default Form;
+
