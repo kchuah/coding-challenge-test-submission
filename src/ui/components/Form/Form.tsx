@@ -4,19 +4,23 @@ import Button from '../Button/Button';
 import InputText from '../InputText/InputText';
 import $ from './Form.module.css';
 
+/** Props that can be spread onto InputText (value, onChange, etc.) */
+export type FormInputExtraProps = Omit<
+  React.ComponentProps<typeof InputText>,
+  'name' | 'placeholder'
+>;
+
 interface FormEntry {
   name: string;
   placeholder: string;
-  // TODO: Defined a suitable type for extra props
-  // This type should cover all different of attribute types
-  extraProps: any;
+  extraProps: FormInputExtraProps;
 }
 
 interface FormProps {
   label: string;
   loading: boolean;
   formEntries: FormEntry[];
-  onFormSubmit: () => void;
+  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   submitText: string;
 }
 
